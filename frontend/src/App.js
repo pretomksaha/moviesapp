@@ -2,7 +2,7 @@
 import './App.css';
 import Home from './components/Home';
 import Nav from './components/Nav';
-import Search from './components/Search'
+import Search from './components/SearchBar.js'
 import {BrowserRouter as Router} from 'react-router-dom';
 import {Switch, Route} from 'react-router-dom';
 
