@@ -1,24 +1,18 @@
 import React, {useEffect, useState} from "react";
 import {Link} from 'react-router-dom';
 
-function Search({placeholder, data}) {
-    useEffect( () => {
-        fetchItems();
-    }, []);
+function Search() {
 
     const [items, setItems] = useState([]);
 
-    const fetchItems = async () => {
-        const data = await fetch('/search');
-        const items = await data.json();
-        setItems(items);
-        console.log(items);
-    };
+
     const [sarch, setSearch] = useState('');
 
 
     const searchData = () => {
-        const dataValue = fetch('http://localhost:4000/search?SearchItem='+sarch);
+        fetch('http://localhost:4000/search?SearchItem='+sarch)
+        .then(response => response.json())
+        .then(data => setItems(data));
     }
 
     return(
@@ -44,7 +38,7 @@ function Search({placeholder, data}) {
                 }
             </div>
         </section>
-            );
+        );
 }
 
 

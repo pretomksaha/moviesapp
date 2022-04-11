@@ -13,14 +13,14 @@ router.get('/search', async(req,res) => {
         {$or:[{"title":{'$regex': searchData,"$options" : "i"}},
              {"director":{'$regex': searchData,"$options" : "i"}},
              {"plot":{'$regex': searchData,"$options" : "i"}}]
-         }).exec((err, movieData) => {
-             if (err) throw err;
-             if (movieData) {
-                 return res.end('hello');
-             } else {
-                return res.end();
-             }
          });
+    if (result) {
+            res.json(result);
+        } else {
+            res.end();
+            }
+         
+
 
    }
    
