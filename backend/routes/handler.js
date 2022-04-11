@@ -1,41 +1,93 @@
-const express = require('express')
+const express = require('express');
 const router = express.Router();
-const Schemas = require('../models/Schemas.js');
+const mySchemas = require('../models/Schemas.js');
+const request = require('request');
+
+require('dotenv/config');
 
 
-router.get('/addMovies', async (req, res)=> {
-    const movie = {
-        title:'Guardians of the Galaxy Vol. 2',
-        year:'2017',
-        director:'James Gunn',
-        plot:'The Guardians struggle to keep together as a team while dealing with their personal family issues, notably Star-Lord\'s encounter with his father the ambitious celestial being Ego.',
-        poster:'https://m.media-amazon.com/images/M/MV5BNjM0NTc0NzItM2FlYS00YzEwLWE0YmUtNTA2ZWIzODc2OTgxXkEyXkFqcGdeQXVyNTgwNzIyNzg@._V1_SX300.jpg'
-    };
+router.get('/search', async(req,res) => {
+   const searchData= req.query.SearchItem;
+   if (searchData){
+    const result = await mySchemas.Movies.find(
+        {$or:[{"title":{'$regex': searchData,"$options" : "i"}},
+             {"director":{'$regex': searchData,"$options" : "i"}},
+             {"plot":{'$regex': searchData,"$options" : "i"}}]
+         }).exec((err, movieData) => {
+             if (err) throw err;
+             if (movieData) {
+                 return res.end('hello');
+             } else {
+                return res.end();
+             }
+         });
 
-    const newMovie = new Schemas.Movies(movie);
+   }
+   
+});
 
+
+router.post('/find', (req, res) => {
+    const findYear = req.body.year;
+    const findTitle= req.body.title;
+    const url ="https://www.omdbapi.com/?t="+findTitle+"&y="+findYear+"&apikey="+ process.env.API_KEY
+    
     try{
-        await newMovie.save( async(err,newMovieResult) =>{
-            console.log('New Movies are added!');
-            res.end('New Movies are added!');
-        });
+        request(url,(error,response) =>{
+            const data=JSON.parse(response.body)
+            if (typeof(data.length) !== 'undefined'){
+                json.forEach(element => {  
+                    const movie = {
+                        title:element['Title'],
+                        year:element['Year'],
+                        director:element['Director'],
+                        plot:element['Plot'],
+                        poster:element['Poster']
+                    };
+                    const newMovie = new mySchemas.Movies(movie);
+
+                    try{
+                        newMovie.save( (err,newMovieResult) =>{
+                            if (err){
+                                res.redirect('/search');
+                                res.end();
+                            }
+                            
+                        });
+                    }catch(err){
+                        console.log(err);
+                        res.redirect('/search');
+                        res.end();
+                    }
+                })
+            }
+            else{
+                const movie = {
+                    title:data['Title'],
+                    year:data['Year'],
+                    director:data['Director'],
+                    plot:data['Plot'],
+                    poster:data['Poster']
+                };
+                const newMovie = new mySchemas.Movies(movie);
+
+                try{
+                    newMovie.save( (err,newMovieResult) =>{
+                        if (err){
+                            res.redirect('/search');
+                            res.end();
+                        }                           
+                    });
+                }catch(err){
+                    res.redirect('/search');
+                    res.end();
+                }
+            }
+        })
     }catch(err){
-        console.log(err);
-        res.end('Movie not added!');
-    }
-
-});
-
-router.get('/store',(req,res) => {
-    const str=[{
-        "name": 'pretom',
-        "email": 'pretomksaha@yahoo.com'
-    }];
-    res.end(JSON.stringify(str))
-});
-
-router.post('/search',(req, res) => {
-    res.end('NA');
+        res.redirect('/search');
+        res.end();
+    }    
 });
 
 module.exports = router;

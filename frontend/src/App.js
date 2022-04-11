@@ -11,13 +11,12 @@ function App() {
   return (
     <Router>
       <div className="App">
+      <Nav />
         <header className="App-header">
-          <Nav />
           <Switch>
             <Route path='/' exact component={Home} />
             <Route path='/search' exact component={Search} />
-          </Switch>
-           
+          </Switch>          
         </header>
       </div>
     </Router>
