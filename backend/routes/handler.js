@@ -32,37 +32,8 @@ router.post('/find', async (req, res) => {
     
     try{
         request(url,async (error,response) =>{
-            if (typeof(data.length) !== 'undefined'){
-                json.forEach(element => {  
-                    const movie = {
-                        title:element['Title'],
-                        year:element['Year'],
-                        director:element['Director'],
-                        plot:element['Plot'],
-                        poster:element['Poster']
-                    };
-                    const newMovie = new mySchemas.Movies(movie);
-
-                    try{
-                         newMovie.save( (err,newMovieResult) =>{
-                            if (err){
-                                console.log(err);
-                                res.redirect('/search');
-                                res.end();
-                            }
-                            else{
-                                res.redirect('/search');
-                                res.end();
-                            }
-                        });
-                    }catch(err){
-                        console.log(err);
-                        res.redirect('/search');
-                        res.end();
-                    }
-                })
-            }
-            else{
+            const data=JSON.parse(response.body)
+            if (data !== 'undefined'){
                 const movie = {
                     title:data['Title'],
                     year:data['Year'],
@@ -70,8 +41,8 @@ router.post('/find', async (req, res) => {
                     plot:data['Plot'],
                     poster:data['Poster']
                 };
-                const newMovie = new mySchemas.Movies(movie);
 
+                const newMovie = new mySchemas.Movies(movie);
                 try{
                      newMovie.save( (err,newMovieResult) =>{
                         if (err){
