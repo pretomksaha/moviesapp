@@ -65,7 +65,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 <div align="center">
-<img src="images/moviesApp.png" alt="Screnshot" width="500" height="500">
+<img src="images/moviesApp.png" alt="Screnshot" width="500" height="300">
 </div>
 The proj
 
