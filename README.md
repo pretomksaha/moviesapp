@@ -124,7 +124,7 @@ On the search page the send a get request to the backend with api. Then the back
 
 As software architecture I follow the water fall model. Here I present the architecture of this project devlopment.
 <div align="center">
-<img src="images/moviesApp5.png" alt="Screnshot" width="300" height="160">
+<img src="images/moviesApp5.png" alt="Screnshot" width="300" height="500">
 </div>
 <p align="right">(<a href="#top">back to top</a>)</p>
 
