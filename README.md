@@ -1,14 +1,5 @@
 <div id="top"></div>
 
-[![Contributors][contributors-shield]][contributors-url]
-[![Forks][forks-shield]][forks-url]
-[![Stargazers][stars-shield]][stars-url]
-[![Issues][issues-shield]][issues-url]
-[![MIT License][license-shield]][license-url]
-[![LinkedIn][linkedin-shield]][linkedin-url]
-
-
-
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
@@ -20,15 +11,6 @@
 
   <p align="center">
     This is a coding challenge given by meinUnterricht - Talent Acquisition. The goal of this project is to build the frontend with (React js) and the backend with (node js).
-    <br />
-    <a href="https://github.com/othneildrew/Best-README-Template"><strong>Explore the docs »</strong></a>
-    <br />
-    <br />
-    <a href="https://github.com/othneildrew/Best-README-Template">View Demo</a>
-    ·
-    <a href="https://github.com/othneildrew/Best-README-Template/issues">Report Bug</a>
-    ·
-    <a href="https://github.com/othneildrew/Best-README-Template/issues">Request Feature</a>
   </p>
 </div>
 
@@ -53,10 +35,8 @@
     </li>
     <li><a href="#usage">Usage</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
+    <li><a href="#approaches">Approaches</a></li>
+
   </ol>
 </details>
 
@@ -67,16 +47,15 @@
 <div align="center">
 <img src="images/moviesApp.png" alt="Screnshot" width="500" height="300">
 </div>
-The proj
+The project is to create the frontend and backend for getting the information from the movie API (omdbapi.com). The following features are included in this project.
 
-Here's why:
-* Your time should be focused on creating something amazing. A project that solves a problem and helps others
-* You shouldn't be doing the same tasks over and over like creating a README from scratch
-* You should implement DRY principles to the rest of your life :smile:
-
-Of course, no one template will serve all projects since your needs may be different. So I'll be adding more in the near future. You may also suggest changes by forking this repo and creating a pull request or opening an issue. Thanks to all the people have contributed to expanding this template!
-
-Use the `BLANK_README.md` to get started.
+* Pull the data from the movies API (omdbapi.com).
+* Store the pull date in the local database (MongoDB)
+* Backend is developed using Node js.
+* Create frontend using React js.
+* Search modules for searching data from local database search fields are title, director, and plot.   
+* Show the result including poster, title, year, director, and plot.
+* Test case for the system.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -86,14 +65,10 @@ Use the `BLANK_README.md` to get started.
 
 This section should list any major frameworks/libraries used to bootstrap your project. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
 
-* [Next.js](https://nextjs.org/)
+* [Node.js](https://nodejs.org/)
 * [React.js](https://reactjs.org/)
-* [Vue.js](https://vuejs.org/)
-* [Angular](https://angular.io/)
-* [Svelte](https://svelte.dev/)
-* [Laravel](https://laravel.com)
 * [Bootstrap](https://getbootstrap.com)
-* [JQuery](https://jquery.com)
+
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -102,32 +77,18 @@ This section should list any major frameworks/libraries used to bootstrap your p
 <!-- GETTING STARTED -->
 ## Getting Started
 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
+The project r
 
-### Prerequisites
-
-This is an example of how to list things you need to use the software and how to install them.
-* npm
+### Prerequisites and Run
+The app is running in two different the frontend on port 3000 and for backend port on 4000. It's possible to run the two systems separately or combinedly.  To run the system first need to go to the backend folder and the run dev.
+* /backend
   ```sh
-  npm install npm@latest -g
+  cd backend
   ```
-
-### Installation
-
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
-   ```sh
-   git clone https://github.com/your_username_/Project-Name.git
-   ```
-3. Install NPM packages
-   ```sh
-   npm install
-   ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
-   ```
+* Run the app 
+  ```sh
+  npm run dev
+  ```
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -136,99 +97,48 @@ This is an example of how to list things you need to use the software and how to
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+In the frontend, there have two parts of navigation  Home and Search. Home has two fields that are required. Using the name of Movies title or parts of the title with a valid year it's possible to pull the data from the movie API and store the data in our local database.
 
-_For more examples, please refer to the [Documentation](https://example.com)_
+From the Search page, it can be possible to search the specific value match in title, director, and plot from the local database and show the result in the list with the poster. Here is the snapshot of the search page.
 
-<p align="right">(<a href="#top">back to top</a>)</p>
-
-
-
-<!-- ROADMAP -->
-## Roadmap
-
-- [x] Add Changelog
-- [x] Add back to top links
-- [] Add Additional Templates w/ Examples
-- [] Add "components" document to easily copy & paste sections of the readme
-- [] Multi-language Support
-    - [] Chinese
-    - [] Spanish
-
-See the [open issues](https://github.com/othneildrew/Best-README-Template/issues) for a full list of proposed features (and known issues).
+<div align="center">
+<img src="images/moviesApp2.png" alt="Screnshot" width="300" height="160">
+</div>
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 
 
-<!-- CONTRIBUTING -->
-## Contributing
+<!-- Architecture -->
+## Architecture
+There has basic structure for the app. Here is the snapshot for the first post and pull method the are exicuted. Frontend send the post method to the backend. Depnding on the serach result it pull the api request to the movie api. Then store the pull date in the local databese.
 
-Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+<div align="center">
+<img src="images/moviesApp3.png" alt="Screnshot" width="300" height="160">
+</div>
 
-If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
-Don't forget to give the project a star! Thanks again!
+On the search page the send a get request to the backend with api. Then the backend search the value in databese and return them in the frontend as json object. 
+<div align="center">
+<img src="images/moviesApp3.png" alt="Screnshot" width="300" height="160">
+</div>
 
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
+As software architecture I follow the water fall model. Here I present the architecture of this project devlopment.
+<div align="center">
+<img src="images/moviesApp3.png" alt="Screnshot" width="300" height="160">
+</div>
 <p align="right">(<a href="#top">back to top</a>)</p>
 
+<!-- approaches -->
+## Approaches
+It was a good challenge for me. I have some working experience on javascript node js on a requirement basis. So, It was my first experience working on a full project on javascript. I learn a lot and I love to learn.
 
-
-<!-- LICENSE -->
-## License
-
-Distributed under the MIT License. See `LICENSE.txt` for more information.
-
-<p align="right">(<a href="#top">back to top</a>)</p>
-
-
-
-<!-- CONTACT -->
-## Contact
-
-Your Name - [@your_twitter](https://twitter.com/your_username) - email@example.com
-
-Project Link: [https://github.com/your_username/repo_name](https://github.com/your_username/repo_name)
-
-<p align="right">(<a href="#top">back to top</a>)</p>
-
-
-
-<!-- ACKNOWLEDGMENTS -->
-## Acknowledgments
-
-Use this space to list resources you find helpful and would like to give credit to. I've included a few of my favorites to kick things off!
-
-* [Choose an Open Source License](https://choosealicense.com)
-* [GitHub Emoji Cheat Sheet](https://www.webpagefx.com/tools/emoji-cheat-sheet)
-* [Malven's Flexbox Cheatsheet](https://flexbox.malven.co/)
-* [Malven's Grid Cheatsheet](https://grid.malven.co/)
-* [Img Shields](https://shields.io)
-* [GitHub Pages](https://pages.github.com)
-* [Font Awesome](https://fontawesome.com)
-* [React Icons](https://react-icons.github.io/react-icons/search)
-
-<p align="right">(<a href="#top">back to top</a>)</p>
-
-
-
-<!-- MARKDOWN LINKS & IMAGES -->
-<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/othneildrew/Best-README-Template.svg?style=for-the-badge
-[contributors-url]: https://github.com/othneildrew/Best-README-Template/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/othneildrew/Best-README-Template.svg?style=for-the-badge
-[forks-url]: https://github.com/othneildrew/Best-README-Template/network/members
-[stars-shield]: https://img.shields.io/github/stars/othneildrew/Best-README-Template.svg?style=for-the-badge
-[stars-url]: https://github.com/othneildrew/Best-README-Template/stargazers
-[issues-shield]: https://img.shields.io/github/issues/othneildrew/Best-README-Template.svg?style=for-the-badge
-[issues-url]: https://github.com/othneildrew/Best-README-Template/issues
-[license-shield]: https://img.shields.io/github/license/othneildrew/Best-README-Template.svg?style=for-the-badge
-[license-url]: https://github.com/othneildrew/Best-README-Template/blob/master/LICENSE.txt
-[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: https://linkedin.com/in/othneildrew
-[product-screenshot]: images/screenshot.png
+Some approaches I take to finish this project.
+1. First, learn about reacting and also learn how to work on it.
+2. Then design the frontend with react.
+3. Create separate components for Home, Nav, and Search.
+4. Learn about how to connect the frontend (react) and backend (node js).
+5. In the backend, as I already have some work experience so created a separate model and handler(Controller).
+6. Then I connect the database with my backend.
+7. I face a lot of problems to solve this project. I take help from the internet to clarify my knowledge. 
+8. Learn about the unit test and apply it on this app.
+9. In that case, I face some problems I find out the problem but with a Lack of knowledge, I didn't solve the issue.
