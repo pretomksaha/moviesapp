@@ -7,6 +7,7 @@ require('dotenv/config');
 
 
 router.get('/search', async(req,res) => {
+
    const searchData= req.query.SearchItem;
    if (searchData){
     const result = await mySchemas.Movies.find(
@@ -15,7 +16,7 @@ router.get('/search', async(req,res) => {
              {"plot":{'$regex': searchData,"$options" : "i"}}]
          });
     if (result) {
-            res.json(result);
+            res.status(200).json(result);
         } else {
             res.end();
             }
@@ -24,14 +25,13 @@ router.get('/search', async(req,res) => {
 });
 
 
-router.post('/find', (req, res) => {  
+router.post('/find', async (req, res) => {  
     const findYear = req.body.year;
     const findTitle= req.body.title;
     const url ="https://www.omdbapi.com/?t="+findTitle+"&y="+findYear+"&apikey="+ process.env.API_KEY
     
     try{
-        request(url,(error,response) =>{
-            const data=JSON.parse(response.body)
+        request(url,async (error,response) =>{
             if (typeof(data.length) !== 'undefined'){
                 json.forEach(element => {  
                     const movie = {
@@ -44,7 +44,7 @@ router.post('/find', (req, res) => {
                     const newMovie = new mySchemas.Movies(movie);
 
                     try{
-                        newMovie.save( (err,newMovieResult) =>{
+                         newMovie.save( (err,newMovieResult) =>{
                             if (err){
                                 console.log(err);
                                 res.redirect('/search');
@@ -73,7 +73,7 @@ router.post('/find', (req, res) => {
                 const newMovie = new mySchemas.Movies(movie);
 
                 try{
-                    newMovie.save( (err,newMovieResult) =>{
+                     newMovie.save( (err,newMovieResult) =>{
                         if (err){
                             console.log(err);
                             res.redirect('/search');

@@ -64,10 +64,10 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-
-<img src="images/moviesApp.png" alt="Screnshot" width="200" height="200">
-
-There are many great README templates available on GitHub; however, I didn't find one that really suited my needs so I created this enhanced one. I want to create a README template so amazing that it'll be the last one you ever need -- I think this is it.
+<div align="center">
+<img src="images/moviesApp.png" alt="Screnshot" width="500" height="500">
+</div>
+The proj
 
 Here's why:
 * Your time should be focused on creating something amazing. A project that solves a problem and helps others
