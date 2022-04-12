@@ -1,6 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 
+// Navigation for Home and Search
 function Nav(){
     return(
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark top">

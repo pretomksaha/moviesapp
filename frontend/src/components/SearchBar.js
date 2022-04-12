@@ -1,24 +1,19 @@
 import React, {useEffect, useState} from "react";
 import {Link} from 'react-router-dom';
 
+// search and show the list of data 
 function Search() {
-    const [errorMessage, setErrorMessage] = React.useState("");
-    const handleClick = () => {
-        setErrorMessage("Example error message!")
-    }
-
     const [items, setItems] = useState([]);
     const [sarch, setSearch] = useState('');
 
-    const searchData = () => {
+    const searchData = () => { // fetch the date from backend
         fetch('http://localhost:4000/search?SearchItem='+sarch)
         .then(response => response.json())
         .then(data => setItems(data));
     }
 
     return(
-      <section>
-            
+      <section>       
             <div class="container-fluid">
                 <h1 class="mt-5">Search Movies</h1>
                     <div class="input-group justify-content-center">
@@ -26,13 +21,11 @@ function Search() {
                             <input onChange={(e)=>setSearch(e.target.value)} type="text" name="SearchItem" class="form-control" />
                             <button onClick={searchData} value="Search" class="btn btn-primary" >Search</button>
                         </div>
-                        {errorMessage && <div className="error"> {errorMessage} </div>}
                     </div>
 
                     {
-                       
-                        items.map(item => (
-                          
+                        // create a list of search data
+                        items.map(item => (  
                                 <div class="container mt-4 mb-4">
                                     <div class="row bg-info">
                                         <div class="row justify-content-center">
