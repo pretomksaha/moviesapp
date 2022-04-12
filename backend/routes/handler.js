@@ -24,8 +24,7 @@ router.get('/search', async(req,res) => {
 });
 
 
-router.post('/find', (req, res) => { 
-    console.log(req.body);   
+router.post('/find', (req, res) => {  
     const findYear = req.body.year;
     const findTitle= req.body.title;
     const url ="https://www.omdbapi.com/?t="+findTitle+"&y="+findYear+"&apikey="+ process.env.API_KEY
