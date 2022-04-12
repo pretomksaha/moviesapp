@@ -102,7 +102,7 @@ In the frontend, there have two parts of navigation  Home and Search. Home has t
 From the Search page, it can be possible to search the specific value match in title, director, and plot from the local database and show the result in the list with the poster. Here is the snapshot of the search page.
 
 <div align="center">
-<img src="images/moviesApp2.png" alt="Screnshot" width="300" height="160">
+<img src="images/moviesApp2.png" alt="Screnshot" width="400" height="220">
 </div>
 
 <p align="right">(<a href="#top">back to top</a>)</p>
@@ -119,12 +119,12 @@ There has basic structure for the app. Here is the snapshot for the first post a
 
 On the search page the send a get request to the backend with api. Then the backend search the value in databese and return them in the frontend as json object. 
 <div align="center">
-<img src="images/moviesApp3.png" alt="Screnshot" width="300" height="160">
+<img src="images/moviesApp4.png" alt="Screnshot" width="300" height="160">
 </div>
 
 As software architecture I follow the water fall model. Here I present the architecture of this project devlopment.
 <div align="center">
-<img src="images/moviesApp3.png" alt="Screnshot" width="300" height="160">
+<img src="images/moviesApp5.png" alt="Screnshot" width="300" height="160">
 </div>
 <p align="right">(<a href="#top">back to top</a>)</p>
 
