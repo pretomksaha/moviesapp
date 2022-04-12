@@ -23,19 +23,35 @@ function Search() {
                     <div class="input-group justify-content-center">
                         <div class="input-group-prepend">
                             <input onChange={(e)=>setSearch(e.target.value)} type="text" name="SearchItem" class="form-control" />
-                            <button onClick={searchData} value="Search" class="btn btn-primary mb-2" />
+                            <button onClick={searchData} value="Search" class="btn btn-primary" >Search</button>
                         </div>
                     </div>
 
                     {
+                       
                         items.map(item => (
-                            <div class="row padding">
-                                <div class="alert alert-info rounded-pill" role="alert">
-                                    <i class="fa fa-user mr-2"></i> <i>{item.title} ({item.year}): {item.plot}</i>
+                          
+                                <div class="container mt-4 mb-4">
+                                    <div class="row bg-info">
+                                        <div class="row justify-content-center">
+                                            <div class="col-4">
+                                                <img src={item.poster} class="img-thumbnail" alt='movie'></img> 
+                                            </div>
+                                            <div class="col-4 mt-5">
+                                                <p class="h2 text-danger text-left">Title: {item.title}</p>
+                                                <p class="h4 text-left mt-4">Year: {item.year}</p>
+                                                <p class="h4 text-left">Director: {item.director}</p>
+                                                <p class="h6 text-left mt-4">{item.plot}</p>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>       
+                                      
                         ))
-                }
+                        
+                    }
+               
             </div>
         </section>
         );

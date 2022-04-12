@@ -11,14 +11,13 @@ function Home() {
                         
                         <div class="form-group mx-sm-3 mb-2">
                             <label for="title"  class="form-label">Title:</label>
-                            <input type="text" id="title" name="title" class="form-control" placeholder="Movie title.." />
+                            <input type="text" id="title" name="title" class="form-control" placeholder="Movie title.." required/>
                         </div>
                         
                         <div class="form-group mx-sm-3 mb-2">
                             <label for="year"  class="form-label">Year:</label>
-                            <input type="text" id="year" name="year" class="form-control" placeholder="Year ex:(2022)" />                           
-                        </div> 
-                        
+                            <input type="text" id="year" name="year" class="form-control" placeholder="Year ex:(2022)" required/>                           
+                        </div>                        
                         <input type="submit" value="find" class="btn btn-primary mt-5 mb-2" />
                     </div>
                 </form>
