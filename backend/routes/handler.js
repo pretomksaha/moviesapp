@@ -19,15 +19,13 @@ router.get('/search', async(req,res) => {
         } else {
             res.end();
             }
-         
-
-
    }
    
 });
 
 
-router.post('/find', (req, res) => {
+router.post('/find', (req, res) => { 
+    console.log(req.body);   
     const findYear = req.body.year;
     const findTitle= req.body.title;
     const url ="https://www.omdbapi.com/?t="+findTitle+"&y="+findYear+"&apikey="+ process.env.API_KEY
@@ -49,10 +47,14 @@ router.post('/find', (req, res) => {
                     try{
                         newMovie.save( (err,newMovieResult) =>{
                             if (err){
+                                console.log(err);
                                 res.redirect('/search');
                                 res.end();
                             }
-                            
+                            else{
+                                res.redirect('/search');
+                                res.end();
+                            }
                         });
                     }catch(err){
                         console.log(err);
@@ -74,17 +76,24 @@ router.post('/find', (req, res) => {
                 try{
                     newMovie.save( (err,newMovieResult) =>{
                         if (err){
+                            console.log(err);
+                            res.redirect('/search');
+                            res.end();
+                        }
+                        else{
                             res.redirect('/search');
                             res.end();
                         }                           
                     });
                 }catch(err){
+                    console.log(err);
                     res.redirect('/search');
                     res.end();
                 }
             }
         })
     }catch(err){
+        console.log(err);
         res.redirect('/search');
         res.end();
     }    

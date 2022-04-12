@@ -2,12 +2,13 @@ import React, {useEffect, useState} from "react";
 import {Link} from 'react-router-dom';
 
 function Search() {
+    const [errorMessage, setErrorMessage] = React.useState("");
+    const handleClick = () => {
+        setErrorMessage("Example error message!")
+    }
 
     const [items, setItems] = useState([]);
-
-
     const [sarch, setSearch] = useState('');
-
 
     const searchData = () => {
         fetch('http://localhost:4000/search?SearchItem='+sarch)
@@ -25,6 +26,7 @@ function Search() {
                             <input onChange={(e)=>setSearch(e.target.value)} type="text" name="SearchItem" class="form-control" />
                             <button onClick={searchData} value="Search" class="btn btn-primary" >Search</button>
                         </div>
+                        {errorMessage && <div className="error"> {errorMessage} </div>}
                     </div>
 
                     {
@@ -46,8 +48,7 @@ function Search() {
                                             
                                         </div>
                                     </div>
-                                </div>
-                                      
+                                </div>                                     
                         ))
                         
                     }
